@@ -1,0 +1,10 @@
+:root {
+}
+
+* {
+  /* This ensures all element widths include border and padding width */
+  box-sizing: border-box;
+}
+
+body {
+}
