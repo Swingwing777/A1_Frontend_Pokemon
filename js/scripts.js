@@ -1,4 +1,11 @@
 var pokemonList = [
+  { name: 'Bulbasaur',
+    type: ['Grass', 'Poison'],
+    ability: ['Chlorophyll','Overgrow'],
+    height: 0.7,
+    healthPoint: 45
+  },
+
   { name: 'Fearow',
     type: ['Flying', 'Normal'],
     ability: ['Keen-eye','Sniper'],
