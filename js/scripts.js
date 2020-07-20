@@ -1,4 +1,5 @@
 var pokemonList = [
+  
   { name: 'Bulbasaur',
     type: ['Grass', 'Poison'],
     ability: ['Chlorophyll','Overgrow'],
@@ -76,7 +77,3 @@ var pokemonList = [
     healthPoint: 60
   }
 ];
-
-console.log(pokemonList[5].height);
-
-document.write(pokemonList[3].ability[2]);
