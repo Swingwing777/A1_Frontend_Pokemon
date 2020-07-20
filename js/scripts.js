@@ -1,43 +1,75 @@
-var myName = 'David';
-document.write(myName);
-myName = 'William';
-document.write(myName);
+var pokemonList = [
+  { name: 'Fearow',
+    type: ['Flying', 'Normal'],
+    ability: ['Keen-eye','Sniper'],
+    height: 1.2,
+    healthPoint: 65
+  },
 
-document.write('<br><br>');
+  { name: 'Charizard',
+    type: ['Flying', 'Fire'],
+    ability: ['Blaze', 'Solar-power'],
+    height: 1.7,
+    healthPoint: 78
+  },
 
-var circleRadius = 8;
-var piConst = 3.1415927;
-var circumferance = 2 * piConst * circleRadius;
-document.write('If circle radius is ', circleRadius, 'cm, then ')
-document.write('circle circumference is ', circumferance, 'cm');
+  { name: 'Arbok',
+    type: ['Poison'],
+    ability: ['Intimidate', 'Shed-skin', 'Unnerve'],
+    height: 3.5,
+    healthPoint: 60
+  },
 
-document.write('<br><br>');
+  { name: 'Raticate',
+    type: ['Normal'],
+    ability: ['Run-away', 'Hustle', 'Guts'],
+    height: 0.7,
+    healthPoint: 55
+  },
 
-document.write('Boeing 777 Fuel Uplift Calculation:', '<br>');
+  { name: 'Raichu',
+    type: ['Electric'],
+    ability: ['Static', 'Lightningrod'],
+    height: 0.8,
+    healthPoint: 60
+  },
 
-var fuelRequired_kg = 40000;
-var fuelShutdown_kg = 5700;
-var fuelUsedAPU_kg = 200;
-var calcUplift_kg = fuelRequired_kg - (fuelShutdown_kg - fuelUsedAPU_kg);
-document.write('Fuel Required Next Sector = ', fuelRequired_kg, 'kg', '<br>');
-document.write('Fuel Remaining Previous Sector = ', fuelShutdown_kg, 'kg', '<br>');
-document.write('Fuel Burned by APU = ', fuelUsedAPU_kg, 'kg', '<br>');
-document.write('Calculated Fuel uplift = ', calcUplift_kg,  'kg');
+  { name: 'Sandslash',
+    type: ['Ground'],
+    ability: ['Sand-veil', 'Sand-rush'],
+    height: 1,
+    healthPoint: 75
+  },
 
-document.write("<br><br>");
+  { name: 'Parasect',
+    type: ['Grass', 'Bug'],
+    ability: ['Damp', 'Effect-spore', 'Dry-skin'],
+    height: 1,
+    healthPoint: 60
+  },
 
-var bowserSupply_ltr = 44300;
-var specGravity = .780;
-var bowserSupply_kg = bowserSupply_ltr * specGravity;
-var discrepancy_kg = calcUplift_kg - bowserSupply_kg;
-var percentDiscrep = (discrepancy_kg / fuelRequired_kg) * 100;
-document.write('Actual Fuel Supplied by Bowser (ltr) = ', bowserSupply_ltr, 'ltr', '<br>');
-document.write('Actual Fuel Supplied by Bowser (kg) = ', bowserSupply_kg, 'kg', '<br>');
-document.write('Fuel Discrepancy (Calculated minus Actual) (kg) = ', discrepancy_kg, 'kg', '<br>');
-document.write('Percentage Discrepancy = ', percentDiscrep, '%', '<br>');
-document.write('Confirm discrepancy does not exceed 1000kg or 5%');
+  { name: 'Butterfree',
+    type: ['Bug', 'Poison'],
+    ability: ['Swarm','Sniper'],
+    height: 1,
+    healthPoint: 65
+  },
 
-document.write('<br><br>');
+  { name: 'Pikachu',
+    type: ['Electric'],
+    ability: ['Static', 'Lighteningrod'],
+    height: 0.4,
+    healthPoint: 35
+  },
 
-var favoriteFood = 'Lamb Kofta Curry';
-document.write('My favorite food is ', favoriteFood);
+  { name: 'Gloom',
+    type: ['Grass', 'Poison'],
+    ability: ['Stench', 'Chlorophyll'],
+    height: 0.8,
+    healthPoint: 60
+  }
+];
+
+console.log(pokemonList[5].height);
+
+document.write(pokemonList[3].ability[2]);
