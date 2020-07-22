@@ -90,6 +90,13 @@ var pokemonList = [
 ];
 
 for (var i = 0; i < pokemonList.length; i++ ) {
-  document.write('<p class="character">' + (pokemonList[i].name) + ': Height: '+ (pokemonList[i].height) + ',\n\n Abilities: ' + (pokemonList[i].ability) + '</p>');
-
+  if (pokemonList[i].height >= 3.0) {
+    document.write('<p class="character-grid1">' + (pokemonList[i].name) + ' |\n \n \n \n Abilities: ' + (pokemonList[i].ability) + '\n\n ; Height: '+ (pokemonList[i].height) + '\n - That\'s really huge!' + '</p>');
+  }
+    else if (pokemonList[i].height < 0.5) {
+    document.write('<p class="character-grid1">' + (pokemonList[i].name) + ' |\n \n \n \n Abilities: ' + (pokemonList[i].ability) + '\n\n ; Height: '+ (pokemonList[i].height) + '\n - That\'s tiny!' + '</p>');
+  }
+    else {
+      document.write('<p class="character-grid1">' + (pokemonList[i].name) + ' |\n \n Abilities: ' + (pokemonList[i].ability) + '\n\n ; Height: '+ (pokemonList[i].height) + '</p>');
+    }
 }
