@@ -1,79 +1,95 @@
 var pokemonList = [
-  
-  { name: 'Bulbasaur',
+
+  {
+    name: 'Bulbasaur',
     type: ['Grass', 'Poison'],
     ability: ['Chlorophyll','Overgrow'],
     height: 0.7,
     healthPoint: 45
   },
 
-  { name: 'Fearow',
+  {
+    name: 'Fearow',
     type: ['Flying', 'Normal'],
     ability: ['Keen-eye','Sniper'],
     height: 1.2,
     healthPoint: 65
   },
 
-  { name: 'Charizard',
+  {
+    name: 'Charizard',
     type: ['Flying', 'Fire'],
     ability: ['Blaze', 'Solar-power'],
     height: 1.7,
     healthPoint: 78
   },
 
-  { name: 'Arbok',
+  {
+    name: 'Arbok',
     type: ['Poison'],
     ability: ['Intimidate', 'Shed-skin', 'Unnerve'],
     height: 3.5,
     healthPoint: 60
   },
 
-  { name: 'Raticate',
+  {
+    name: 'Raticate',
     type: ['Normal'],
     ability: ['Run-away', 'Hustle', 'Guts'],
     height: 0.7,
     healthPoint: 55
   },
 
-  { name: 'Raichu',
+  {
+    name: 'Raichu',
     type: ['Electric'],
     ability: ['Static', 'Lightningrod'],
     height: 0.8,
     healthPoint: 60
   },
 
-  { name: 'Sandslash',
+  {
+    name: 'Sandslash',
     type: ['Ground'],
     ability: ['Sand-veil', 'Sand-rush'],
     height: 1,
     healthPoint: 75
   },
 
-  { name: 'Parasect',
+  {
+    name: 'Parasect',
     type: ['Grass', 'Bug'],
     ability: ['Damp', 'Effect-spore', 'Dry-skin'],
     height: 1,
     healthPoint: 60
   },
 
-  { name: 'Butterfree',
+  {
+    name: 'Butterfree',
     type: ['Bug', 'Poison'],
     ability: ['Swarm','Sniper'],
     height: 1,
     healthPoint: 65
   },
 
-  { name: 'Pikachu',
+  {
+    name: 'Pikachu',
     type: ['Electric'],
     ability: ['Static', 'Lighteningrod'],
     height: 0.4,
     healthPoint: 35
   },
 
-  { name: 'Gloom',
+  {
+    name: 'Gloom',
     type: ['Grass', 'Poison'],
     ability: ['Stench', 'Chlorophyll'],
     height: 0.8,
     healthPoint: 60
   }
 ];
+
+for (var i = 0; i < pokemonList.length; i++ ) {
+  document.write('<p class="character">' + (pokemonList[i].name) + ': Height: '+ (pokemonList[i].height) + ',\n\n Abilities: ' + (pokemonList[i].ability) + '</p>');
+
+}
