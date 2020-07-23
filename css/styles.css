@@ -92,10 +92,19 @@ hr {
   color: #ababab;
   font-size: 16px;
   margin: 5px;
+  border-radius: 5px;
 }
 
 #myLogo {
   margin-left: 20px;
+  width: 20%;
+  height: auto;
+}
+
+#myBanner {
+  margin-left: 20px;
+  width: 60%;
+  height: auto;
 }
 
 /* grids go here */
@@ -125,18 +134,10 @@ hr {
   .grid1 {
     grid-template-columns: 1fr;
   }
-
-  #myLogo {
-    max-width: 150px;
-  }
 }
 
-@media all and (min-width: 500px) and (max-width: 750px) {
+@media all and (min-width: 500px) and (max-width: 770px) {
   .grid1 {
     grid-template-columns: 1fr 1fr;
-  }
-
-  #myLogo {
-    max-width: 150px;
   }
 }
