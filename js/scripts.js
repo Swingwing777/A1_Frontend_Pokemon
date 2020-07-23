@@ -196,5 +196,6 @@ function printArrayDetails(list) {
   }
 }
 
+
 printArrayDetails(pokemonList);
 printArrayDetails(pokemonList2);

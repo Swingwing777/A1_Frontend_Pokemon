@@ -9,7 +9,7 @@
 body {
   max-width: 1500px;
   color: black;
-  background: #ff0;
+  background-color: #ff0;
   font-family: 'Raleway', sans-serif;
   font-size: 20px;
   line-height: 1.6;
@@ -136,7 +136,7 @@ hr {
   }
 }
 
-@media all and (min-width: 500px) and (max-width: 770px) {
+@media all and (min-width: 500px) and (max-width: 850px) {
   .grid1 {
     grid-template-columns: 1fr 1fr;
   }
