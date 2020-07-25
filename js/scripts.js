@@ -181,21 +181,25 @@ var pokemonList2 = [
 ];
 
 function printArrayDetails(list) {
-  for (var i = 0; i < list.length; i++ ) {
+  list.forEach(function(pokemon) {
     '<div class="grid1">'
-    if (list[i].height >= 3.0) {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (list[i].name) + '</strong>' + '<br>' + 'Abilities: ' + (list[i].ability) + '<br>' + 'Height: '+ (list[i].height) + '<strong>\n - That\'s really huge!</strong>' + '</p>');
+    if (pokemon.height >= 3.0) {
+      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height) + '<strong>\n - That\'s really huge!</strong>' + '</p>');
     }
-      else if (list[i].height <= 0.49) {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (list[i].name) + '</strong>' + '<br>' + 'Abilities: ' + (list[i].ability) + '<br>' + 'Height: '+ (list[i].height) + '<strong>\n - That\'s tiny!</strong>' + '</p>');
+      else if (pokemon.height <= 0.49) {
+      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height) + '<strong>\n - That\'s tiny!</strong>' + '</p>');
     }
       else {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (list[i].name) + '</strong>' + '<br>' + 'Abilities: ' + (list[i].ability) + '<br>' + 'Height: '+ (list[i].height) + '</p>');
+      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height) + '</p>');
     }
     '</div>'
-  }
+  })
 }
 
+document.write('<h2>' + 'First Generation Pokemons: ' + '</h2>');
 
 printArrayDetails(pokemonList);
+
+document.write('<h2>' + 'Second Generation Pokemons: ' + '</h2>');
+
 printArrayDetails(pokemonList2);

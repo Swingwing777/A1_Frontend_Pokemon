@@ -21,7 +21,8 @@ header {
   background-image: linear-gradient(to bottom, rgba(240, 0, 12, 0.3), rgba(240, 0, 12, 0.1));
 }
 
-h1 {
+h1,
+h2 {
   font-family: 'Indie Flower', cursive;
 }
 
