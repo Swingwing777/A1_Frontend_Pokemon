@@ -173,7 +173,7 @@ var pokemonRepository = (function () {
 
     {
       name: 'Gengar',
-      type: [' Ghost', 'Poison'],
+      type: [' Ghost', ' Poison'],
       ability: [' Levitate'],
       height: 1.5,
       healthPoint: 60
@@ -226,9 +226,29 @@ function printArrayDetails(list) {
   })
 }
 
-pokemonRepository.add({name: 'Hypno' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>', type: ['Psychic'], ability: ['Insomnia','Inner-Focus','Forewarn'], height: 1.6, healthPoint: 85 });
+function checkChar(charDetail) {            // adds to pokemonList
+  if (typeof charDetail === "object") {
+    pokemonRepository.add(charDetail)
+  } else {
+    alert('Check New Character input format');
+  }
+}
 
-pokemonRepository.add2({name: 'Moltres' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>', type: ['Fire', 'Flying'], ability: ['Pressure','Flame-body'], height: 2, healthPoint: 90 });
+function checkChar2(charDetail) {            // add to pokemonList2
+  if (typeof charDetail === "object") {
+    pokemonRepository.add2(charDetail)
+  } else {
+    alert('Check New Character input format');
+  }
+}
+
+// add additional characters here:
+
+checkChar({name: 'Hypno' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>', type: ['Psychic'], ability: [' Insomnia',' Inner-Focus',' Forewarn'], height: 1.6, healthPoint: 85 });
+
+checkChar2({name: 'Moltres' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>', type: ['Fire', ' Flying'], ability: [' Pressure',' Flame-body'], height: 2, healthPoint: 90 });
+
+// create website below:
 
 document.write('<h2>' + 'First Generation Pokemons: ' + '</h2>');
 
