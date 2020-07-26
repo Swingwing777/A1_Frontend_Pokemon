@@ -208,19 +208,21 @@ function printArrayDetails(list) {
   list.forEach(function(pokemon) {
     '<div class="grid1">'
     if (pokemon.height >= 3.0) {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name)
-       + '</strong>' + '<br>' + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height)
-        + '<strong>\n - That\'s really huge!</strong>' + '<br>' + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
+      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
+       + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>'
+        + 'Height: '+ (pokemon.height) + '<strong>\n - That\'s really huge!</strong>' + '<br>'
+         + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
     }
       else if (pokemon.height <= 0.49) {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name)
-       + '</strong>' + '<br>' + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height)
-        + '<strong>\n - That\'s tiny!</strong>' + '<br>' + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
+      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
+       + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>'
+        + 'Height: '+ (pokemon.height) + '<strong>\n - That\'s tiny!</strong>' + '<br>'
+         + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
     }
       else {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name)
-       + '</strong>' + '<br>' + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height)
-        + '<br>' + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
+      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
+       + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>'
+        + 'Height: '+ (pokemon.height) + '<br>' + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
     }
     '</div>'
   })
@@ -244,9 +246,11 @@ function checkChar2(charDetail) {            // add to pokemonList2
 
 // add additional characters here:
 
-checkChar({name: 'Hypno' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>', type: ['Psychic'], ability: [' Insomnia',' Inner-Focus',' Forewarn'], height: 1.6, healthPoint: 85 });
+checkChar({name: 'Hypno' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>',
+ type: ['Psychic'], ability: [' Insomnia',' Inner-Focus',' Forewarn'], height: 1.6, healthPoint: 85 });
 
-checkChar2({name: 'Moltres' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>', type: ['Fire', ' Flying'], ability: [' Pressure',' Flame-body'], height: 2, healthPoint: 90 });
+checkChar2({name: 'Moltres' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>',
+ type: ['Fire', ' Flying'], ability: [' Pressure',' Flame-body'], height: 2, healthPoint: 90 });
 
 // create website below:
 
