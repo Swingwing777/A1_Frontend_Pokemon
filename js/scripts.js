@@ -193,7 +193,7 @@ var pokemonRepository = (function () {
   }
 
   function getAll2() {
-    return pokemonList;
+    return pokemonList2;
   }
 
   return {
@@ -208,17 +208,27 @@ function printArrayDetails(list) {
   list.forEach(function(pokemon) {
     '<div class="grid1">'
     if (pokemon.height >= 3.0) {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height) + '<strong>\n - That\'s really huge!</strong>' + '</p>');
+      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name)
+       + '</strong>' + '<br>' + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height)
+        + '<strong>\n - That\'s really huge!</strong>' + '<br>' + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
     }
       else if (pokemon.height <= 0.49) {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height) + '<strong>\n - That\'s tiny!</strong>' + '</p>');
+      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name)
+       + '</strong>' + '<br>' + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height)
+        + '<strong>\n - That\'s tiny!</strong>' + '<br>' + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
     }
       else {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height) + '</p>');
+      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name)
+       + '</strong>' + '<br>' + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>' + 'Height: '+ (pokemon.height)
+        + '<br>' + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
     }
     '</div>'
   })
 }
+
+pokemonRepository.add({name: 'Hypno' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>', type: ['Psychic'], ability: ['Insomnia','Inner-Focus','Forewarn'], height: 1.6, healthPoint: 85 });
+
+pokemonRepository.add2({name: 'Moltres' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>', type: ['Fire', 'Flying'], ability: ['Pressure','Flame-body'], height: 2, healthPoint: 90 });
 
 document.write('<h2>' + 'First Generation Pokemons: ' + '</h2>');
 

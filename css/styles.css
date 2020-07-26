@@ -28,6 +28,7 @@ h2 {
 
 strong {
   color: red;
+  font-family: 'Indie Flower', cursive;
   text-shadow: 1px 1px 1px #000;
 }
 
@@ -79,6 +80,11 @@ hr {
   color: blue;
   font-size: 24px;
   text-shadow: 1px 1px 1px #fff;
+}
+
+.newCharacter {
+  color: green;
+  text-shadow: 1px 1px 1px #000;
 }
 
 #selectYour {
