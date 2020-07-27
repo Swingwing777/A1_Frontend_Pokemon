@@ -230,7 +230,9 @@ function printArrayDetails(list) {
   })
 }
 
-function checkChar1(charDetail) {            // add to pokemonList1 - only alerts if charDetail is not an object in any way or form.
+// two dffferent methods of validation for new characters tried
+
+function checkChar1(charDetail) {            // add to pokemonList1 - Too tolerant as only alerts if charDetail is not an object in any way or form.
   var charKeys1 =Object.keys(charDetail);
   if (typeof charDetail === "object") {
     pokemonRepository.add1(charDetail);
@@ -240,17 +242,15 @@ function checkChar1(charDetail) {            // add to pokemonList1 - only alert
   }
 }
 
-function checkChar2(charDetail) {            // adds to pokemonList2 - too strong - flags any input as false
+function checkChar2(charDetail) {            // adds to pokemonList2 - too strong as flags any input tried as false.
   var charKeys2 = Object.keys(charDetail);
-  if (charKeys2 === ("name", "type", "ability", "height", "healthPoint")) {
+  if (charKeys2 === ("name")) {
     pokemonRepository.add1(charDetail);
   } else {
     alert('Check List 2 "New Character" input format');
     console.log(charKeys2);
   }
 }
-
-
 
 /* // filter character by attributes:
 
