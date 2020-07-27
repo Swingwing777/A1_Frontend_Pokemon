@@ -242,28 +242,15 @@ function checkChar1(charDetail) {            // add to pokemonList1 - Too tolera
   }
 }
 
-function checkChar2(charDetail) {            // adds to pokemonList2 - too strong as flags any input tried as false.
+function checkChar2(charDetail) {            // adds to pokemonList2 - too strong as flags any input (even single key) as false.
   var charKeys2 = Object.keys(charDetail);
-  if (charKeys2 === ("name")) {
+  if (charKeys2 === ("name", "type", "ability", "height", "healthPoint")) {
     pokemonRepository.add1(charDetail);
   } else {
     alert('Check List 2 "New Character" input format');
     console.log(charKeys2);
   }
 }
-
-/* // filter character by attributes:
-
- function filterChar(key) {
-  click
-
-}
-
-function filteResult() {
-  document.getElementById("byAttributeChar").innerHTML = pokemonRepository.filter(filterCHar);
-}
-
-*/
 
 /* add additional characters here:
 checkchar1 (and 2) replaces pokemonRepository.add1 (and .add2) to allow format check */
