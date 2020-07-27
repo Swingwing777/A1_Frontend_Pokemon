@@ -180,6 +180,8 @@ var pokemonRepository = (function () {
     }
   ];
 
+// essential access functions
+
   function add(pokemon) {
     pokemonList.push(pokemon)
   }
