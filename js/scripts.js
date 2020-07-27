@@ -1,5 +1,5 @@
 var pokemonRepository = (function () {
-  var pokemonList = [
+  var pokemonList1 = [
     {
       name: 'Bulbasaur',
       type: [' Grass', ' Poison'],
@@ -180,16 +180,18 @@ var pokemonRepository = (function () {
     }
   ];
 
+// essential access functions
+
   function add(pokemon) {
-    pokemonList.push(pokemon)
+    pokemonList1.push(pokemon);
   }
 
   function add2(pokemon) {
-    pokemonList2.push(pokemon)
+    pokemonList2.push(pokemon);
   }
 
-  function getAll() {
-    return pokemonList;
+  function getAll1() {
+    return pokemonList1;
   }
 
   function getAll2() {
@@ -198,9 +200,9 @@ var pokemonRepository = (function () {
 
   return {
     add: add,
-    getAll: getAll,
+    getAll1: getAll1,
     add2: add2,
-    getAll2: getAll2
+    getAll2: getAll2,
   };
 })();
 
@@ -208,19 +210,19 @@ function printArrayDetails(list) {
   list.forEach(function(pokemon) {
     '<div class="grid1">'
     if (pokemon.height >= 3.0) {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
+      document.write('<p class="grid1__item" id="byAttributeChar">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
        + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>'
         + 'Height: '+ (pokemon.height) + '<strong>\n - That\'s really huge!</strong>' + '<br>'
          + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
     }
       else if (pokemon.height <= 0.49) {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
+      document.write('<p class="grid1__item" id="byAttributeChar">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
        + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>'
         + 'Height: '+ (pokemon.height) + '<strong>\n - That\'s tiny!</strong>' + '<br>'
          + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
     }
       else {
-      document.write('<p class="grid1__item">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
+      document.write('<p class="grid1__item" id="byAttributeChar">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
        + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>'
         + 'Height: '+ (pokemon.height) + '<br>' + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
     }
@@ -228,11 +230,11 @@ function printArrayDetails(list) {
   })
 }
 
-function checkChar(charDetail) {            // adds to pokemonList
-  if (typeof charDetail === "object") {
+function checkChar1(charDetail) {            // adds to pokemonList
+  if (typeof charDetail === "object") /*&& Object.keys(charDetail) === ("name","type", "ability", "height", "healthPoint")*/ {
     pokemonRepository.add(charDetail)
   } else {
-    alert('Check New Character input format');
+    alert('Check List 1 "New Character" input format');
   }
 }
 
@@ -240,13 +242,27 @@ function checkChar2(charDetail) {            // add to pokemonList2
   if (typeof charDetail === "object") {
     pokemonRepository.add2(charDetail)
   } else {
-    alert('Check New Character input format');
+    alert('Check List 2 "New Character" input format');
   }
 }
 
-// add additional characters here:
+/* // filter character by attributes:
 
-checkChar({name: 'Hypno' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>',
+ function filterChar(key) {
+  click
+
+}
+
+function filteResult() {
+  document.getElementById("byAttributeChar").innerHTML = pokemonRepository.filter(filterCHar);
+}
+
+*/
+
+/* add additional characters here:
+checkchar1 (and 2) replaces pokemonRepository.add1 (and .add2) to allow format check */
+
+checkChar1({name: 'Hypno' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>',
  type: ['Psychic'], ability: [' Insomnia',' Inner-Focus',' Forewarn'], height: 1.6, healthPoint: 85 });
 
 checkChar2({name: 'Moltres' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>',
@@ -254,10 +270,10 @@ checkChar2({name: 'Moltres' + '<span class = "newCharacter">' + ' - New Pokémon
 
 // create website below:
 
-document.write('<h2>' + 'First Generation Pokemons: ' + '</h2>');
+document.write('<h2>' + 'First Generation Pokemons' + '</h2>');
 
-printArrayDetails(pokemonRepository.getAll());
+printArrayDetails(pokemonRepository.getAll1());
 
-document.write('<h2>' + 'Second Generation Pokemons: ' + '</h2>');
+document.write('<h2>' + 'Second Generation Pokemons' + '</h2>');
 
 printArrayDetails(pokemonRepository.getAll2());
