@@ -230,21 +230,27 @@ function printArrayDetails(list) {
   })
 }
 
-function checkChar1(charDetail) {            // adds to pokemonList
-  if (typeof charDetail === "object") /*&& Object.keys(charDetail) === ("name","type", "ability", "height", "healthPoint")*/ {
-    pokemonRepository.add1(charDetail)
+function checkChar1(charDetail) {            // add to pokemonList1 - only alerts if charDetail is not an object in any way or form.
+  var charKeys1 =Object.keys(charDetail);
+  if (typeof charDetail === "object") {
+    pokemonRepository.add1(charDetail);
   } else {
     alert('Check List 1 "New Character" input format');
+    console.log(charKeys1);
   }
 }
 
-function checkChar2(charDetail) {            // add to pokemonList2
-  if (typeof charDetail === "object") {
-    pokemonRepository.add2(charDetail)
+function checkChar2(charDetail) {            // adds to pokemonList2 - too strong - flags any input as false
+  var charKeys2 = Object.keys(charDetail);
+  if (charKeys2 === ("name", "type", "ability", "height", "healthPoint")) {
+    pokemonRepository.add1(charDetail);
   } else {
     alert('Check List 2 "New Character" input format');
+    console.log(charKeys2);
   }
 }
+
+
 
 /* // filter character by attributes:
 
