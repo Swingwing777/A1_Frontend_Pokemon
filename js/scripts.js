@@ -182,7 +182,7 @@ var pokemonRepository = (function () {
 
 // essential access functions
 
-  function add(pokemon) {
+  function add1(pokemon) {
     pokemonList1.push(pokemon);
   }
 
@@ -199,7 +199,7 @@ var pokemonRepository = (function () {
   }
 
   return {
-    add: add,
+    add1: add1,
     getAll1: getAll1,
     add2: add2,
     getAll2: getAll2,
@@ -232,7 +232,7 @@ function printArrayDetails(list) {
 
 function checkChar1(charDetail) {            // adds to pokemonList
   if (typeof charDetail === "object") /*&& Object.keys(charDetail) === ("name","type", "ability", "height", "healthPoint")*/ {
-    pokemonRepository.add(charDetail)
+    pokemonRepository.add1(charDetail)
   } else {
     alert('Check List 1 "New Character" input format');
   }
