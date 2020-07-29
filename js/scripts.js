@@ -230,6 +230,19 @@ function printArrayDetails(list) {
   })
 }
 
+function objectEquals(arr1){
+//template array of keys
+let arr2 = ["name", "type", "ability", "height", "healthPoint"];
+  //check if both are arrays and have equal length
+  if (Array.isArray(arr1) && Array.isArray(arr2) && arr1.length == arr2.length){
+    let sortedArr1 = arr1.sort()
+    let sortedArr2 = arr2.sort()
+    return sortedArr1.every((val, index) => val == sortedArr2[index]);
+  } else{
+    return "cannot compare these";
+  }
+}
+
 function checkChar1(charDetail) {           // add to pokemonList1 - Too tolerant as only alerts if charDetail is not an object in any way or form.
   var charKeys1 = Object.keys(charDetail);
   if (typeof charDetail === "object") {
@@ -240,20 +253,13 @@ function checkChar1(charDetail) {           // add to pokemonList1 - Too toleran
   }
 }
 
-function checkChar2(charDetail2) {          // adds to pokemonList2 - too strong if == as flags any input (even single key) as false.
-  let charRef = {
-    name: 'name',
-    type: [],
-    ability: [],
-    height: 1,
-    healthPoint: 1
-  };
-  if (Object.keys(charDetail2) >= Object.keys(charRef)){
+function checkChar2(charDetail2) {          // adds to pokemonList2.
+  var charKeys2 = Object.keys(charDetail2);
+  if (objectEquals(charKeys2)) {
     pokemonRepository.add2(charDetail2);
   } else {
     alert('Check List 2 "New Character" input format');
-    console.log(Object.keys(charDetail2));
-    console.log(Object.keys(charRef));
+    console.log(charkeys2);
   }
 }
 
