@@ -232,8 +232,12 @@ function printArrayDetails(list) {
 
 // two dffferent methods of validation for new characters tried
 
-function checkChar1(charDetail) {            // add to pokemonList1 - Too tolerant as only alerts if charDetail is not an object in any way or form.
-  var charKeys1 =Object.keys(charDetail);
+function isArrayEquals(arr1, arr2){
+  return Object.keys(arr1) === Object.keys(arr2);
+}
+
+function checkChar1(charDetail) {           // add to pokemonList1 - Too tolerant as only alerts if charDetail is not an object in any way or form.
+  var charKeys1 = Object.keys(charDetail);
   if (typeof charDetail === "object") {
     pokemonRepository.add1(charDetail);
   } else {
@@ -242,13 +246,18 @@ function checkChar1(charDetail) {            // add to pokemonList1 - Too tolera
   }
 }
 
-function checkChar2(charDetail) {            // adds to pokemonList2 - too strong as flags any input (even single key) as false.
-  var charKeys2 = Object.keys(charDetail);
-  if (charKeys2 === ("name", "type", "ability", "height", "healthPoint")) {
-    pokemonRepository.add1(charDetail);
+function checkChar2(charDetail2) {          // adds to pokemonList2 - too strong as flags any input (even single key) as false.
+  let charRef = {
+    name: 'name',
+    type: [],
+    ability: [],
+    height: 0,
+    healthPoint: 0};
+  if (isArrayEquals(charDetail2, charRef)) {
+    pokemonRepository.add1(charDetail2);
   } else {
     alert('Check List 2 "New Character" input format');
-    console.log(charKeys2);
+    console.log(Object.keys(charDetail2));
   }
 }
 
