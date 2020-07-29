@@ -195,7 +195,6 @@ var pokemonRepository = (function () {
     button.classList.add('pokemonButton')
     heroItem.appendChild(button);
     heroList.appendChild(heroItem);
-    return hero;
   }
 
   return {
@@ -210,28 +209,6 @@ function printArrayDetails(list) {
     pokemonRepository.addListItem(pokemon);
   })
 }
-
-  /* OLD ////////// '<div class="grid1">'
-    if (pokemon.height >= 3.0) {
-      document.write('<p class="grid1__item" id="byAttributeChar">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
-       + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>'
-        + 'Height: '+ (pokemon.height) + '<strong>\n - That\'s really huge!</strong>' + '<br>'
-         + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
-    }
-      else if (pokemon.height <= 0.49) {
-      document.write('<p class="grid1__item" id="byAttributeChar">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
-       + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>'
-        + 'Height: '+ (pokemon.height) + '<strong>\n - That\'s tiny!</strong>' + '<br>'
-         + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
-    }
-      else {
-      document.write('<p class="grid1__item" id="byAttributeChar">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
-       + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>'
-        + 'Height: '+ (pokemon.height) + '<br>' + 'Health Points: ' + (pokemon.healthPoint) + '</p>');
-    }
-    '</div>'
-  })
-} */
 
 function objectEquals(arr1){
 //template array of keys
@@ -248,7 +225,7 @@ let arr2 = ["name", "type", "ability", "height", "healthPoint"];
 
 function checkChar(charDetail) {          // adds to pokemonList2.
   var charKeys = Object.keys(charDetail);
-  if (objectEquals(charKeys2)) {
+  if (objectEquals(charKeys)) {
     pokemonRepository.add(charDetail);
   } else {
     alert('Check List "New Character" input format');
