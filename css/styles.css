@@ -10,6 +10,7 @@ body {
   max-width: 1500px;
   color: black;
   background-color: #ff0;
+  background-image: url(../img/Pikachu_Fade33.png);
   font-family: 'Raleway', sans-serif;
   font-size: 20px;
   line-height: 1.6;
@@ -18,6 +19,7 @@ body {
 }
 
 header {
+  background-color: #ff0;
   background-image: linear-gradient(to bottom, rgba(240, 0, 12, 0.3), rgba(240, 0, 12, 0.1));
 }
 
@@ -38,6 +40,7 @@ button {
   border-color: black;
   border-radius: 5px;
   background-color: red;
+  margin: 20px;
   width: 120px;
   color: white;
   filter: brightness(1);
@@ -54,9 +57,13 @@ button:focus {
 hr {
   border: 0;
   margin: 0;
-  height: 5px;
+  height: 7px;
   background-image: linear-gradient(to right, rgba(240, 0, 12, 0.1), rgba(240, 0, 12, 0.9), rgba(240, 0, 12, 0.1));
   max-width: 1500px;
+}
+
+ul {
+  list-style: none;
 }
 
 .page-header {
@@ -80,25 +87,6 @@ hr {
   color: blue;
   font-size: 24px;
   text-shadow: 1px 1px 1px #fff;
-}
-
-.pokemonButton {
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  border-radius: 5px;
-  background-color: #fcd303;
-  width: 120px;
-  color: #c42323;
-  filter: brightness(1);
-  transition: all 1s ease;
-  box-shadow: 2px 2px 5px #000;
-}
-
-.pokemonButton:hover,
-.pokemonButton:focus {
-  cursor: pointer;
-  filter: brightness(0.8);
 }
 
 .newCharacter {
@@ -134,36 +122,71 @@ hr {
 }
 
 /* grids go here */
-
-.grid1__item {
+.pokemonButton {               /* grid fallback */
   display: inline-block;
   width: 33%;
 }
 
-.grid1 {
+.pokemon-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 20px;
 }
 
-.grid1__item {
-  background-color: #ffffb3;
-  box-shadow: 1px 1px 3px #d60000;
-  width: 400px;
-  margin: 30px;
+.pokemonButton {     /* buttons are grid items as well */
+  display: grid;
+  font-family: 'Indie Flower', cursive;
+  font-size: 30px;
   text-align: center;
+  justify-content: space-around;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  border-radius: 5px;
+  background: #eb0202;
+  height: 100px;
+  width: 250px;
+  margin: 15px;
+  color: #fff;
+  filter: brightness(1);
+  transition: all 1s ease;
+  box-shadow:
+    2px 3px 3px #fff inset,
+    2px 2px 5px #000;
+}
+
+.pokemonButton:hover,
+.pokemonButton:focus {
+  cursor: pointer;
+  filter: brightness(0.8);
 }
 
 /* media queries required */
 
-@media all and (max-width: 500px) {
-  .grid1 {
-    grid-template-columns: 1fr;
+@media all and (min-width: 500px) and (max-width: 850px) {
+  .pokemon-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pokemonButton {
+    height: 50px;
+    width: 200px;
   }
 }
 
-@media all and (min-width: 500px) and (max-width: 850px) {
-  .grid1 {
-    grid-template-columns: 1fr 1fr;
+@media all and (max-width: 500px) {
+  body {
+    padding: 10px;
+  }
+
+  .pokemon-list {
+    grid-template-columns: 1fr;
+  }
+
+  .pokemonButton {
+    font-size: 24px;
+    margin: auto;
+    height: 50px;
+    width: 300px;
   }
 }

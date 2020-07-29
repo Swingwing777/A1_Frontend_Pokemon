@@ -1,5 +1,5 @@
 var pokemonRepository = (function () {
-  var pokemonList1 = [
+  var pokemonList = [
     {
       name: 'Bulbasaur',
       type: [' Grass', ' Poison'],
@@ -86,10 +86,7 @@ var pokemonRepository = (function () {
       ability: [' Stench', ' Chlorophyll'],
       height: 0.8,
       healthPoint: 60
-    }
-  ];
-
-  var pokemonList2 = [
+    },
 
     {
       name: 'Nidoqueen',
@@ -182,32 +179,15 @@ var pokemonRepository = (function () {
 
 // essential access functions
 
-  function add1(pokemon) {
-    pokemonList1.push(pokemon);
+  function add(pokemon) {
+    pokemonList.push(pokemon);
   }
 
-  function add2(pokemon) {
-    pokemonList2.push(pokemon);
+  function getAll() {
+    return pokemonList;
   }
 
-  function getAll1() {
-    return pokemonList1;
-  }
-
-  function getAll2() {
-    return pokemonList2;
-  }
-
-  return {
-    add1: add1,
-    getAll1: getAll1,
-    add2: add2,
-    getAll2: getAll2,
-  };
-})();
-
-function printArrayDetails(list) {
-  list.forEach(function(pokemon) {
+  function addListItem(pokemon) {
     var heroList = document.querySelector('.pokemon-list')  // selects parent list element
     var heroItem = document.createElement('li');   // creates new 'virtual' list item
     var button = document.createElement('button');  // creates new 'virtual' button
@@ -215,11 +195,21 @@ function printArrayDetails(list) {
     button.classList.add('pokemonButton')
     heroItem.appendChild(button);
     heroList.appendChild(heroItem);
+    return hero;
+  }
+
+  return {
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem
+  };
+})();
+
+function printArrayDetails(list) {
+  list.forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
   })
 }
-
-
-
 
   /* OLD ////////// '<div class="grid1">'
     if (pokemon.height >= 3.0) {
@@ -256,35 +246,23 @@ let arr2 = ["name", "type", "ability", "height", "healthPoint"];
   }
 }
 
-function checkChar1(charDetail) {           // add to pokemonList1 - Too tolerant as only alerts if charDetail is not an object in any way or form.
-  var charKeys1 = Object.keys(charDetail);
-  if (typeof charDetail === "object") {
-    pokemonRepository.add1(charDetail);
-  } else {
-    alert('Check List 1 "New Character" input format');
-    console.log(charKeys1);
-  }
-}
-
-function checkChar2(charDetail2) {          // adds to pokemonList2.
-  var charKeys2 = Object.keys(charDetail2);
+function checkChar(charDetail) {          // adds to pokemonList2.
+  var charKeys = Object.keys(charDetail);
   if (objectEquals(charKeys2)) {
-    pokemonRepository.add2(charDetail2);
+    pokemonRepository.add(charDetail);
   } else {
-    alert('Check List 2 "New Character" input format');
-    console.log(charkeys2);
+    alert('Check List "New Character" input format');
+    console.log(charkeys);
   }
 }
 
 /* add additional characters here:
 checkchar1 (and 2) replaces pokemonRepository.add1 (and .add2) to allow format check */
 
-checkChar1({name: 'Hypno', type: ['Psychic'], ability: [' Insomnia',' Inner-Focus',' Forewarn'], height: 1.6, healthPoint: 85 });
+checkChar({name: 'Hypno', type: ['Psychic'], ability: [' Insomnia',' Inner-Focus',' Forewarn'], height: 1.6, healthPoint: 85 });
 
-checkChar2({name: 'Moltres', type: ['Fire', ' Flying'], ability: [' Pressure',' Flame-body'], height: 2, healthPoint: 90 });
+checkChar({name: 'Moltres', type: ['Fire', ' Flying'], ability: [' Pressure',' Flame-body'], height: 2, healthPoint: 90 });
 
 // create website below:
 
-printArrayDetails(pokemonRepository.getAll1());
-
-printArrayDetails(pokemonRepository.getAll2());
+printArrayDetails(pokemonRepository.getAll());
