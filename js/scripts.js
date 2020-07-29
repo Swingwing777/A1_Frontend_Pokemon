@@ -208,7 +208,20 @@ var pokemonRepository = (function () {
 
 function printArrayDetails(list) {
   list.forEach(function(pokemon) {
-    '<div class="grid1">'
+    var heroList = document.querySelector('.pokemon-list')  // selects parent list element
+    var heroItem = document.createElement('li');   // creates new 'virtual' list item
+    var button = document.createElement('button');  // creates new 'virtual' button
+    button.innerText = pokemon.name;  // adds pokemon name value to each button.
+    button.classList.add('pokemonButton')
+    heroItem.appendChild(button);
+    heroList.appendChild(heroItem);
+  })
+}
+
+
+
+
+  /* OLD ////////// '<div class="grid1">'
     if (pokemon.height >= 3.0) {
       document.write('<p class="grid1__item" id="byAttributeChar">' + '<strong class="strong1">' + (pokemon.name) + '</strong>' + '<br>'
        + 'Type: ' + (pokemon.type) + '<br>' + 'Abilities: ' + (pokemon.ability) + '<br>'
@@ -228,7 +241,7 @@ function printArrayDetails(list) {
     }
     '</div>'
   })
-}
+} */
 
 function objectEquals(arr1){
 //template array of keys
@@ -266,18 +279,12 @@ function checkChar2(charDetail2) {          // adds to pokemonList2.
 /* add additional characters here:
 checkchar1 (and 2) replaces pokemonRepository.add1 (and .add2) to allow format check */
 
-checkChar1({name: 'Hypno' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>',
- type: ['Psychic'], ability: [' Insomnia',' Inner-Focus',' Forewarn'], height: 1.6, healthPoint: 85 });
+checkChar1({name: 'Hypno', type: ['Psychic'], ability: [' Insomnia',' Inner-Focus',' Forewarn'], height: 1.6, healthPoint: 85 });
 
-checkChar2({name: 'Moltres' + '<span class = "newCharacter">' + ' - New Pokémon!' + '</span>',
- type: ['Fire', ' Flying'], ability: [' Pressure',' Flame-body'], height: 2, healthPoint: 90 });
+checkChar2({name: 'Moltres', type: ['Fire', ' Flying'], ability: [' Pressure',' Flame-body'], height: 2, healthPoint: 90 });
 
 // create website below:
 
-document.write('<h2>' + 'First Generation Pokemons' + '</h2>');
-
 printArrayDetails(pokemonRepository.getAll1());
-
-document.write('<h2>' + 'Second Generation Pokemons' + '</h2>');
 
 printArrayDetails(pokemonRepository.getAll2());
