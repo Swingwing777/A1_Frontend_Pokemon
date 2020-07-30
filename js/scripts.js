@@ -1,3 +1,5 @@
+//  This is the main IIFE function containing all data //
+
 var pokemonRepository = (function () {
   var pokemonList = [
     {
@@ -177,7 +179,7 @@ var pokemonRepository = (function () {
     }
   ];
 
-// essential access functions
+// essential access functions to dat awithin IIFE
 
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -185,6 +187,16 @@ var pokemonRepository = (function () {
 
   function getAll() {
     return pokemonList;
+  }
+
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
+
+  function buttonListen(button, pokemon) {
+    button.addEventListener('click', function (event) {  //creates event listener for each button
+      showDetails(pokemon);
+    });
   }
 
   function addListItem(pokemon) {
@@ -195,6 +207,7 @@ var pokemonRepository = (function () {
     button.classList.add('pokemonButton')
     heroItem.appendChild(button);
     heroList.appendChild(heroItem);
+    buttonListen(button, pokemon);
   }
 
   return {
@@ -203,6 +216,8 @@ var pokemonRepository = (function () {
     addListItem: addListItem
   };
 })();
+
+// ------------- Funtions external to IIFE -----------------------
 
 function printArrayDetails(list) {
   list.forEach(function (pokemon) {
@@ -233,8 +248,8 @@ function checkChar(charDetail) {          // adds to pokemonList2.
   }
 }
 
-/* add additional characters here:
-checkchar1 (and 2) replaces pokemonRepository.add1 (and .add2) to allow format check */
+// --------------  add additional characters to array here -----------------
+
 
 checkChar({name: 'Hypno', type: ['Psychic'], ability: [' Insomnia',' Inner-Focus',' Forewarn'], height: 1.6, healthPoint: 85 });
 
@@ -243,3 +258,6 @@ checkChar({name: 'Moltres', type: ['Fire', ' Flying'], ability: [' Pressure',' F
 // create website below:
 
 printArrayDetails(pokemonRepository.getAll());
+
+
+// ------------- END ------------------------
