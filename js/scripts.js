@@ -1,185 +1,11 @@
 //  This is the main IIFE function containing all data //
 
 var pokemonRepository = (function () {
-  var pokemonList = [
-    {
-      name: 'Bulbasaur',
-      type: [' Grass', ' Poison'],
-      ability: [' Chlorophyll',' Overgrow'],
-      height: 0.7,
-      healthPoint: 45
-    },
+  var pokemonList = [];
+  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';  //URL to API goes here
+  var banner = document.querySelector('p');
 
-    {
-      name: 'Fearow',
-      type: [' Flying', ' Normal'],
-      ability: [' Keen-eye',' Sniper'],
-      height: 1.2,
-      healthPoint: 65
-    },
-
-    {
-      name: 'Charizard',
-      type: [' Flying', ' Fire'],
-      ability: [' Blaze', ' Solar-power'],
-      height: 1.7,
-      healthPoint: 78
-    },
-
-    {
-      name: 'Arbok',
-      type: [' Poison'],
-      ability: [' Intimidate', ' Shed-skin', ' Unnerve'],
-      height: 3.5,
-      healthPoint: 60
-    },
-
-    {
-      name: 'Raticate',
-      type: [' Normal'],
-      ability: [' Run-away', ' Hustle', ' Guts'],
-      height: 0.7,
-      healthPoint: 55
-    },
-
-    {
-      name: 'Raichu',
-      type: [' Electric'],
-      ability: [' Static', ' Lightningrod'],
-      height: 0.8,
-      healthPoint: 60
-    },
-
-    {
-      name: 'Sandslash',
-      type: [' Ground'],
-      ability: [' Sand-veil', ' Sand-rush'],
-      height: 1,
-      healthPoint: 75
-    },
-
-    {
-      name: 'Parasect',
-      type: [' Grass', ' Bug'],
-      ability: [' Damp', ' Effect-spore', ' Dry-skin'],
-      height: 1,
-      healthPoint: 60
-    },
-
-    {
-      name: 'Butterfree',
-      type: [' Bug', ' Poison'],
-      ability: [' Swarm',' Sniper'],
-      height: 1,
-      healthPoint: 65
-    },
-
-    {
-      name: 'Pikachu',
-      type: [' Electric'],
-      ability: [' Static', ' Lighteningrod'],
-      height: 0.4,
-      healthPoint: 35
-    },
-
-    {
-      name: 'Gloom',
-      type: [' Grass', ' Poison'],
-      ability: [' Stench', ' Chlorophyll'],
-      height: 0.8,
-      healthPoint: 60
-    },
-
-    {
-      name: 'Nidoqueen',
-      type: [' Ground', ' Poison'],
-      ability: [' Poison-Point',' Rivalry', ' Shear-force'],
-      height: 1.3,
-      healthPoint: 90
-    },
-
-    {
-      name: 'Oddish',
-      type: [' Grass', ' Poison'],
-      ability: [' Chlorphyll',' Run-away'],
-      height: 0.5,
-      healthPoint: 45
-    },
-
-    {
-      name: 'Venemoth',
-      type: [' Bug', ' Poison'],
-      ability: [' Shield-dust', ' Tinted-lens', ' Wonder-skin'],
-      height: 1.5,
-      healthPoint: 70
-    },
-
-    {
-      name: 'Dugtrio',
-      type: [' Ground'],
-      ability: [' Sand-veil', ' Arena-trap', ' Sand-force'],
-      height: 0.7,
-      healthPoint: 35
-    },
-
-    {
-      name: 'Persian',
-      type: [' Normal'],
-      ability: [' Limber', ' Technician', ' Unnerve'],
-      height: 1,
-      healthPoint: 65
-    },
-
-    {
-      name: 'Primeape',
-      type: [' Fighting'],
-      ability: [' Vital-spirit', ' Anger-point', ' Defiant'],
-      height: 1,
-      healthPoint: 65
-    },
-
-    {
-      name: 'Golbat',
-      type: [' Poison', ' Flying'],
-      ability: [' Inner-focus', ' Infiltrator'],
-      height: 1.6,
-      healthPoint: 75
-    },
-
-    {
-      name: 'Machamp',
-      type: [' Fighting'],
-      ability: [' Guts', ' Steadfast', ' No-guard'],
-      height: 1.6,
-      healthPoint: 90
-    },
-
-    {
-      name: 'Magneton',
-      type: [' Electric', ' Steel'],
-      ability: [' Sturdy',' Magnet-pull', ' Analytic'],
-      height: 1,
-      healthPoint: 50
-    },
-
-    {
-      name: 'Cloyster',
-      type: [' Ice', ' Water'],
-      ability: [' Shell-armor', ' Skill-link', ' Overcoat'],
-      height: 1.5,
-      healthPoint: 50
-    },
-
-    {
-      name: 'Gengar',
-      type: [' Ghost', ' Poison'],
-      ability: [' Levitate'],
-      height: 1.5,
-      healthPoint: 60
-    }
-  ];
-
-// essential access functions to dat awithin IIFE
+// essential access functions to data within IIFE
 
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -189,41 +15,92 @@ var pokemonRepository = (function () {
     return pokemonList;
   }
 
-  function showDetails(pokemon) {
-    console.log(pokemon);
+  function addListItem(pokemon) {
+    var heroList = document.querySelector('.pokemon-list')  // selects parent <ul> element
+    var heroItem = document.createElement('li');            // creates new 'virtual' <li> list item
+    var button = document.createElement('button');          // creates new 'virtual' button
+    button.innerText = pokemon.name;                        // adds pokemon name value to each button.
+    button.classList.add('pokemonButton')                   // class added to newly-created button
+    heroItem.appendChild(button);                           // button appended to newly-created <li> element
+    heroList.appendChild(heroItem);                         // newly-created <li> added to parent <ul> list
+    buttonListen(button, pokemon);                          // click listen function called on new button
   }
 
-  function buttonListen(button, pokemon) {
-    button.addEventListener('click', function (event) {  //creates event listener for each button
-      showDetails(pokemon);
+  function showLoadingMessage(banner) {
+    banner.classList.remove('hideDataLoading');
+  }
+
+  function hideLoadingMessage(banner) {
+    banner.classList.add('hideDataLoading');
+  }
+
+  function loadList() {                                // fetch function within function loadList
+    showLoadingMessage(banner);
+    return fetch(apiUrl).then(function (response) {    // to fetch list of pokemons
+      return response.json();                          // a promise object is returned
+    }).then(function (json) {
+      json.results.forEach(function (item) {           // usable pokemon data is parsed from the initial returned object
+        var pokemon = {                                // Only name and URL used for each Pokemon (aka item)
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+        hideLoadingMessage(banner);                                 // this calls the add(pokemon) function to push the new pokemon to the ned of the pokemonList
+      });
+    }).catch(function (e) {                            // action in event of error
+      hideLoadingMessage(banner);
+      console.error(e);
+    })
+  }
+
+  function loadDetails(item) {                          // separate fetch to call for greater detail for selected Pokemon (aka items)
+    showLoadingMessage(banner);
+    var url = item.detailsUrl;
+    return fetch(url).then(function (response) {        // fetch function within function loadDetails
+      return response.json();
+    }).then(function (details) {
+      // Now we add the details to the item             // Additonal api details added to each Pokemon (aka item) object
+      item.imageUrl = details.sprites.front_default;    // 'item' is my Pokemon whereas 'details' is value from API.
+      item.height = details.height;
+      item.types = details.types;
+      item.abilities = details.abilities;
+      item.healthPoint = details.stats[0].base_stat;
+      hideLoadingMessage(banner);
+    }).catch(function (e) {
+      hideLoadingMessage(banner);
+      console.error(e);
     });
   }
 
-  function addListItem(pokemon) {
-    var heroList = document.querySelector('.pokemon-list')  // selects parent list element
-    var heroItem = document.createElement('li');   // creates new 'virtual' list item
-    var button = document.createElement('button');  // creates new 'virtual' button
-    button.innerText = pokemon.name;  // adds pokemon name value to each button.
-    button.classList.add('pokemonButton')
-    heroItem.appendChild(button);
-    heroList.appendChild(heroItem);
-    buttonListen(button, pokemon);
+  function showDetails(pokemon) {                       // this function to show additional Pokemon details on click
+    loadDetails(pokemon).then(function () {
+      console.log(pokemon);
+    });
+  }
+
+  function buttonListen(button, pokemon) {
+    button.addEventListener('click', function (event) {      //creates event listener for each button
+      showDetails(pokemon);
+    });
   }
 
   return {
     add: add,
     getAll: getAll,
-    addListItem: addListItem
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails
   };
 })();
 
-// ------------- Funtions external to IIFE -----------------------
+// ------------- Functions external to IIFE -----------------------
 
-function printArrayDetails(list) {
-  list.forEach(function (pokemon) {
+pokemonRepository.loadList().then(function() {            // this calls the data from API and then calls getAll
+  // Now the data is loaded!
+  pokemonRepository.getAll().forEach(function(pokemon){   //  getAll returns Pokemon, followed by forEach loop, add to pokemonList array
     pokemonRepository.addListItem(pokemon);
-  })
-}
+  });
+});
 
 function objectEquals(arr1){
 //template array of keys
@@ -249,15 +126,3 @@ function checkChar(charDetail) {          // adds to pokemonList2.
 }
 
 // --------------  add additional characters to array here -----------------
-
-
-checkChar({name: 'Hypno', type: ['Psychic'], ability: [' Insomnia',' Inner-Focus',' Forewarn'], height: 1.6, healthPoint: 85 });
-
-checkChar({name: 'Moltres', type: ['Fire', ' Flying'], ability: [' Pressure',' Flame-body'], height: 2, healthPoint: 90 });
-
-// create website below:
-
-printArrayDetails(pokemonRepository.getAll());
-
-
-// ------------- END ------------------------
