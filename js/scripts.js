@@ -101,7 +101,7 @@ var pokemonRepository = (function () {
     var closeButtonElement = document.createElement('button');  //new Close button
     closeButtonElement.classList.add('modal-close');
     closeButtonElement.innerText = 'Close';
-    closeButtonElement.addEventListener('click', hideModal);  // to use Close Button
+    closeButtonElement.addEventListener('click', hideModal);  // Close Button runs hideModal()
 
     var titleElement = document.createElement('h1');   // new Title element
     titleElement.innerText = title;
@@ -121,10 +121,10 @@ var pokemonRepository = (function () {
     modalContainer.classList.remove('is-visible');
 
     if (dialogPromiseReject) {
-    dialogPromiseReject();
-    dialogPromiseReject = null;
+      dialogPromiseReject();
+      dialogPromiseReject = null;
+    }
   }
-}
 
   function showDialog(title, text) {
     showModal(title, text);
@@ -147,17 +147,17 @@ var pokemonRepository = (function () {
     confirmButton.focus();
 
     return new Promise((resolve, reject) => {
-    cancelButton.addEventListener('click', hideModal);
-    confirmButton.addEventListener('click', () => {
-      dialogPromiseReject = null;  //var given null value. Resets.
-      hideModal();
-      resolve();
-     });
+      cancelButton.addEventListener('click', hideModal);
+      confirmButton.addEventListener('click', () => {
+        dialogPromiseReject = null;  //var given null value. Resets.
+        hideModal();
+        resolve();
+      });
 
-    // This can be used to reject from other functions
-    dialogPromiseReject = reject;
-  });
-}
+      // This can be used to reject from other functions, such as the close button
+      dialogPromiseReject = reject;
+    });
+  }
 
   document.querySelector('#show-modal').addEventListener('click', () => {
     showModal('Modal Title', 'This is the modal content' );
@@ -165,11 +165,11 @@ var pokemonRepository = (function () {
 
   document.querySelector('#show-dialog').addEventListener('click', () => {
     showDialog('Confirm Action', 'Are you sure this is a good idea?').then(function() {
-      alert('confirmed');
+      alert('Confirmed');
     }, () => {
       alert('Not confirmed');
+    });
   });
-});
 
   window.addEventListener('keydown', (e) => {   //arrow function – Esc to close modal
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
@@ -182,7 +182,7 @@ var pokemonRepository = (function () {
     var target = e.target;           // e is shorthand var for an event. eg keydown
     if (target === modalContainer) {
       hideModal();
-     }
+    }
   });
 
   // ------ Return statement of IIFE is here
