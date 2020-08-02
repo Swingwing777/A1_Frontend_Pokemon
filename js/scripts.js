@@ -164,8 +164,12 @@ var pokemonRepository = (function () {
   });
 
   document.querySelector('#show-dialog').addEventListener('click', () => {
-    showDialog('Confirm Action', 'Are you sure this is a good idea?');
+    showDialog('Confirm Action', 'Are you sure this is a good idea?').then(function() {
+      alert('confirmed');
+    }, () => {
+      alert('Not confirmed');
   });
+});
 
   window.addEventListener('keydown', (e) => {   //arrow function – Esc to close modal
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
