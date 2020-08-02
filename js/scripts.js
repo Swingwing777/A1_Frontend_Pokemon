@@ -4,8 +4,10 @@ var pokemonRepository = (function () {
   var pokemonList = [];
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';  //URL to API goes here
   var banner = document.querySelector('p');
+  var modalContainer = document.querySelector('#modal-container');
+  var dialogPromiseReject;      // Variable declared, but undefined value.  This can be set later, by showDialog
 
-// essential access functions to data within IIFE
+  // essential access functions to data within IIFE
 
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -84,6 +86,103 @@ var pokemonRepository = (function () {
     });
   }
 
+  // --- Modal Functions go here --------------
+
+  function showModal(title, text) {       //This is an IIFE
+    var modalContainer = document.querySelector('#modal-container');
+
+    // Clear the template modal of content, then rebuild as desired
+
+    modalContainer.innerHTML = '';  //clears content for fresh start
+
+    var modal = document.createElement('div'); // creates new modal
+    modal.classList.add('modal');
+
+    var closeButtonElement = document.createElement('button');  //new Close button
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);  // to use Close Button
+
+    var titleElement = document.createElement('h1');   // new Title element
+    titleElement.innerText = title;
+
+    var contentElement = document.createElement('p');  // new Content element
+    contentElement.innerText = text;
+
+    modal.appendChild(closeButtonElement);  // add close button to modal
+    modal.appendChild(titleElement);        // add title to modal
+    modal.appendChild(contentElement);      // add content to modal
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is-visible');
+  }
+
+  function hideModal() {
+    modalContainer.classList.remove('is-visible');
+
+    if (dialogPromiseReject) {
+    dialogPromiseReject();
+    dialogPromiseReject = null;
+  }
+}
+
+  function showDialog(title, text) {
+    showModal(title, text);
+
+    var modal = modalContainer.querySelector('.modal');
+
+    //create a confirm and cancel button
+    var confirmButton = document.createElement('button');
+    confirmButton.classList.add('modal-confirm');
+    confirmButton.innerText = 'Confirm';
+
+    var cancelButton = document.createElement('button');
+    cancelButton.classList.add('modal-cancel');
+    cancelButton.innerText = 'Cancel';
+
+    modal.appendChild(confirmButton);
+    modal.appendChild(cancelButton);
+
+    //focus confirmButton so that user can simply press Enter
+    confirmButton.focus();
+
+    return new Promise((resolve, reject) => {
+    cancelButton.addEventListener('click', hideModal);
+    confirmButton.addEventListener('click', () => {
+      dialogPromiseReject = null;  //var given null value. Resets.
+      hideModal();
+      resolve();
+     });
+
+    // This can be used to reject from other functions
+    dialogPromiseReject = reject;
+  });
+}
+
+  document.querySelector('#show-modal').addEventListener('click', () => {
+    showModal('Modal Title', 'This is the modal content' );
+  });
+
+  document.querySelector('#show-dialog').addEventListener('click', () => {
+    showDialog('Confirm Action', 'Are you sure this is a good idea?');
+  });
+
+  window.addEventListener('keydown', (e) => {   //arrow function – Esc to close modal
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  });
+
+  modalContainer.addEventListener('click', (e) => {
+    // Click only outside modal on modal overlay will close modal
+    var target = e.target;           // e is shorthand var for an event. eg keydown
+    if (target === modalContainer) {
+      hideModal();
+     }
+  });
+
+  // ------ Return statement of IIFE is here
+
   return {
     add: add,
     getAll: getAll,
@@ -91,7 +190,7 @@ var pokemonRepository = (function () {
     loadList: loadList,
     loadDetails: loadDetails
   };
-})();
+})();     // ----------------- END OF IIFE -----------------
 
 // ------------- Functions external to IIFE -----------------------
 
@@ -125,4 +224,4 @@ function checkChar(charDetail) {          // adds to pokemonList2.
   }
 }
 
-// --------------  add additional characters to array here -----------------
+// -----------------Experiment --------------
