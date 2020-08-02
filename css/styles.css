@@ -108,7 +108,7 @@ ul {
   width: 10em;
   font-family: 'Oswald', sans-serif;
   font-variant: normal;
-  font-size: 40px;
+  font-size: 36px;
   text-align: center;
   justify-content: space-around;
   padding-top: 0.2rem;
@@ -116,7 +116,7 @@ ul {
   border-width: 1px;
   border-color: black;
   border-radius: 5px;
-  background: #610101;
+  background: #ebc634;
   color: white;
   box-shadow:
     2px 3px 3px #fff inset,
@@ -135,7 +135,7 @@ ul {
   width: 10em;
   font-family: 'Oswald', sans-serif;
   font-variant: normal;
-  font-size: 40px;
+  font-size: 36px;
   text-align: center;
   justify-content: space-around;
   padding-top: 0.2rem;
@@ -143,7 +143,7 @@ ul {
   border-width: 1px;
   border-color: black;
   border-radius: 5px;
-  background: #610101;
+  background: #ebc634;
   color: white;
   transition: filter 3s ease;
   box-shadow:
