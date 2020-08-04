@@ -83,7 +83,7 @@ var pokemonRepository = (function () {
         pokemon.imageUrl,
         'Character: " ' + pokemon.name + ' "',
         'Primary Type: ' + pokemon.types[0].type.name,
-        'Abilities: ' + pokemon.abilities[0].ability.name + ', ' + pokemon.abilities[1].ability.name,
+        'Primary Ability: ' + pokemon.abilities[0].ability.name,
         'Height: ' + pokemon.height + ' metres',
         'Healthpoints: ' + pokemon.healthPoint
       )
@@ -120,7 +120,7 @@ var pokemonRepository = (function () {
 
     //create content element as list
     var listElement = document.createElement('ul');
-    listElement.classList.add('pokemonList')
+    listElement.classList.add('pokemonDetail')
     listElement.innerText = 'Statistics: ';
 
     var listElement__Item1 = document.createElement('li');
