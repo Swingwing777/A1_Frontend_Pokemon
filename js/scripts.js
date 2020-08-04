@@ -2,13 +2,10 @@
 
 var pokemonRepository = (function () {
   var pokemonList = [];
-  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';  //URL to API goes here
+  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   var banner = document.querySelector('p');
-  var modalContainer = document.querySelector('#modal-container');
-  var dialogPromiseReject;      // Variable declared, but undefined value.  This can be set later, by showDialog
 
-  // essential access functions to data within IIFE
-
+  // essential functions to access data within IIFE
   function add(pokemon) {
     pokemonList.push(pokemon);
   }
@@ -17,15 +14,16 @@ var pokemonRepository = (function () {
     return pokemonList;
   }
 
+  // add Pokemon buttons
   function addListItem(pokemon) {
-    var heroList = document.querySelector('.pokemon-list')  // selects parent <ul> element
-    var heroItem = document.createElement('li');            // creates new 'virtual' <li> list item
-    var button = document.createElement('button');          // creates new 'virtual' button
-    button.innerText = pokemon.name;                        // adds pokemon name value to each button.
-    button.classList.add('pokemonButton')                   // class added to newly-created button
-    heroItem.appendChild(button);                           // button appended to newly-created <li> element
-    heroList.appendChild(heroItem);                         // newly-created <li> added to parent <ul> list
-    buttonListen(button, pokemon);                          // click listen function called on new button
+    var heroList = document.querySelector('.pokemon-list')
+    var heroItem = document.createElement('li');
+    var button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('pokemonButton')
+    heroItem.appendChild(button);
+    heroList.appendChild(heroItem);
+    buttonListen(button, pokemon);
   }
 
   function showLoadingMessage(banner) {
@@ -36,33 +34,36 @@ var pokemonRepository = (function () {
     banner.classList.add('hideDataLoading');
   }
 
-  function loadList() {                                // fetch function within function loadList
+  //fecth primary pokemmon data (name, character url)
+  function loadList() {
     showLoadingMessage(banner);
-    return fetch(apiUrl).then(function (response) {    // to fetch list of pokemons
-      return response.json();                          // a promise object is returned
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
     }).then(function (json) {
-      json.results.forEach(function (item) {           // usable pokemon data is parsed from the initial returned object
-        var pokemon = {                                // Only name and URL used for each Pokemon (aka item)
+      json.results.forEach(function (item) {
+        var pokemon = {
           name: item.name,
           detailsUrl: item.url
         };
         add(pokemon);
-        hideLoadingMessage(banner);                                 // this calls the add(pokemon) function to push the new pokemon to the ned of the pokemonList
+        hideLoadingMessage(banner);
       });
-    }).catch(function (e) {                            // action in event of error
+    }).catch(function (e) {
       hideLoadingMessage(banner);
       console.error(e);
     })
   }
 
-  function loadDetails(item) {                          // separate fetch to call for greater detail for selected Pokemon (aka items)
+  //fetch additional pokemon details
+  function loadDetails(item) {
     showLoadingMessage(banner);
     var url = item.detailsUrl;
-    return fetch(url).then(function (response) {        // fetch function within function loadDetails
+    return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      // Now we add the details to the item             // Additonal api details added to each Pokemon (aka item) object
-      item.imageUrl = details.sprites.front_default;    // 'item' is my Pokemon whereas 'details' is value from API.
+
+      // Add details to each Pokemon (aka item)
+      item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
       item.abilities = details.abilities;
@@ -74,44 +75,53 @@ var pokemonRepository = (function () {
     });
   }
 
-  function showDetails(pokemon) {                       // this function to show additional Pokemon details on click
+  // to show additional Pokemon details on click
+  function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
       console.log(pokemon);
     });
   }
 
+  //creates event listener for each button
   function buttonListen(button, pokemon) {
-    button.addEventListener('click', function (event) {      //creates event listener for each button
+    button.addEventListener('click', function (event) {
       showDetails(pokemon);
     });
   }
 
-  // --- Modal Functions go here --------------
+  // --- Modal Functions IIFE within Pokemon Repository --------------
 
-  function showModal(title, text) {       //This is an IIFE
+(function () {
+  var modalContainer = document.querySelector('#modal-container');
+  var dialogPromiseReject;      // Variable declared but undefined
+
+  function showModal(title, text) {
     var modalContainer = document.querySelector('#modal-container');
 
     // Clear the template modal of content, then rebuild as desired
+    modalContainer.innerHTML = '';
 
-    modalContainer.innerHTML = '';  //clears content for fresh start
-
-    var modal = document.createElement('div'); // creates new modal
+    //create modal
+    var modal = document.createElement('div');
     modal.classList.add('modal');
 
-    var closeButtonElement = document.createElement('button');  //new Close button
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'Close';
-    closeButtonElement.addEventListener('click', hideModal);  // Close Button runs hideModal()
-
-    var titleElement = document.createElement('h1');   // new Title element
+    //create title element
+    var titleElement = document.createElement('h1');
     titleElement.innerText = title;
 
-    var contentElement = document.createElement('p');  // new Content element
+    //create content element
+    var contentElement = document.createElement('p');
     contentElement.innerText = text;
 
-    modal.appendChild(closeButtonElement);  // add close button to modal
-    modal.appendChild(titleElement);        // add title to modal
-    modal.appendChild(contentElement);      // add content to modal
+    //create close button
+    var closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
+    closeButtonElement.addEventListener('click', hideModal);
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
     modalContainer.appendChild(modal);
 
     modalContainer.classList.add('is-visible');
@@ -131,11 +141,12 @@ var pokemonRepository = (function () {
 
     var modal = modalContainer.querySelector('.modal');
 
-    //create a confirm and cancel button
+    //create confirm button
     var confirmButton = document.createElement('button');
     confirmButton.classList.add('modal-confirm');
     confirmButton.innerText = 'Confirm';
 
+    //create cancel button
     var cancelButton = document.createElement('button');
     cancelButton.classList.add('modal-cancel');
     cancelButton.innerText = 'Cancel';
@@ -179,14 +190,15 @@ var pokemonRepository = (function () {
 
   modalContainer.addEventListener('click', (e) => {
     // Click only outside modal on modal overlay will close modal
-    var target = e.target;           // e is shorthand var for an event. eg keydown
+    var target = e.target;
     if (target === modalContainer) {
       hideModal();
     }
   });
 
-  // ------ Return statement of IIFE is here
+})();   // -------------- End of modal IIFE  --------------------
 
+  // Return statement of pokemonRepository IIFE
   return {
     add: add,
     getAll: getAll,
@@ -197,7 +209,6 @@ var pokemonRepository = (function () {
 })();     // ----------------- END OF IIFE -----------------
 
 // ------------- Functions external to IIFE -----------------------
-
 pokemonRepository.loadList().then(function() {            // this calls the data from API and then calls getAll
   // Now the data is loaded!
   pokemonRepository.getAll().forEach(function(pokemon){   //  getAll returns Pokemon, followed by forEach loop, add to pokemonList array
