@@ -184,8 +184,7 @@ var pokemonRepository = (function () {
     }
   });
 
-
-  // -------------- End of modal   --------------------
+// -------------- End of modal   --------------------
 
   // Return statement of pokemonRepository IIFE
   return {
