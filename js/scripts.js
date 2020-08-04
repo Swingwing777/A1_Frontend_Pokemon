@@ -4,6 +4,7 @@ var pokemonRepository = (function () {
   var pokemonList = [];
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   var banner = document.querySelector('p');
+  var modalContainer = document.querySelector('#modal-container');
 
   // essential functions to access data within IIFE
   function add(pokemon) {
@@ -64,8 +65,8 @@ var pokemonRepository = (function () {
 
       // Add details to each Pokemon (aka item)
       item.imageUrl = details.sprites.front_default;
-      item.height = details.height;
       item.types = details.types;
+      item.height = details.height;
       item.abilities = details.abilities;
       item.healthPoint = details.stats[0].base_stat;
       hideLoadingMessage(banner);
@@ -78,7 +79,14 @@ var pokemonRepository = (function () {
   // to show additional Pokemon details on click
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+      showModal(
+        pokemon.imageUrl,
+        'Character: " ' + pokemon.name + ' "',
+        'Primary Type: ' + pokemon.types[0].type.name,
+        'Abilities: ' + pokemon.abilities[0].ability.name + ', ' + pokemon.abilities[1].ability.name,
+        'Height: ' + pokemon.height + ' metres',
+        'Healthpoints: ' + pokemon.healthPoint
+      )
     });
   }
 
@@ -89,14 +97,9 @@ var pokemonRepository = (function () {
     });
   }
 
-  // --- Modal Functions IIFE within Pokemon Repository --------------
+  // --- Modal Functions within Pokemon Repository --------------
 
-(function () {
-  var modalContainer = document.querySelector('#modal-container');
-  var dialogPromiseReject;      // Variable declared but undefined
-
-  function showModal(title, text) {
-    var modalContainer = document.querySelector('#modal-container');
+  function showModal(img, title, types, abilities, height, healthPoint) {
 
     // Clear the template modal of content, then rebuild as desired
     modalContainer.innerHTML = '';
@@ -109,9 +112,32 @@ var pokemonRepository = (function () {
     var titleElement = document.createElement('h1');
     titleElement.innerText = title;
 
-    //create content element
-    var contentElement = document.createElement('p');
-    contentElement.innerText = text;
+
+    //create image for modal
+    var imgElement = document.createElement('img');
+    imgElement.classList.add('pokemonImage');
+    imgElement.src = img;
+
+    //create content element as list
+    var listElement = document.createElement('ul');
+    listElement.classList.add('pokemonList')
+    listElement.innerText = 'Statistics: ';
+
+    var listElement__Item1 = document.createElement('li');
+    listElement__Item1.classList.add('pokemonList__Type')
+    listElement__Item1.innerText = types;
+
+    var listElement__Item2 = document.createElement('li');
+    listElement__Item2.classList.add('pokemonList__Abilities')
+    listElement__Item2.innerText = abilities;
+
+    var listElement__Item3 = document.createElement('li');
+    listElement__Item3.classList.add('pokemonList__Height')
+    listElement__Item3.innerText = height;
+
+    var listElement__Item4 = document.createElement('li');
+    listElement__Item4.classList.add('pokemonList__Health')
+    listElement__Item4.innerText = healthPoint;
 
     //create close button
     var closeButtonElement = document.createElement('button');
@@ -119,67 +145,28 @@ var pokemonRepository = (function () {
     closeButtonElement.innerText = 'Close';
     closeButtonElement.addEventListener('click', hideModal);
 
+    listElement.appendChild(listElement__Item1);
+    listElement.appendChild(listElement__Item2);
+    listElement.appendChild(listElement__Item3);
+    listElement.appendChild(listElement__Item4);
     modal.appendChild(closeButtonElement);
     modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
+    modal.appendChild(listElement);
+    modal.appendChild(imgElement);
     modalContainer.appendChild(modal);
+
+    //focus closeButton so that user can simply press Enter
+    closeButtonElement.focus();
 
     modalContainer.classList.add('is-visible');
   }
 
   function hideModal() {
     modalContainer.classList.remove('is-visible');
-
-    if (dialogPromiseReject) {
-      dialogPromiseReject();
-      dialogPromiseReject = null;
-    }
-  }
-
-  function showDialog(title, text) {
-    showModal(title, text);
-
-    var modal = modalContainer.querySelector('.modal');
-
-    //create confirm button
-    var confirmButton = document.createElement('button');
-    confirmButton.classList.add('modal-confirm');
-    confirmButton.innerText = 'Confirm';
-
-    //create cancel button
-    var cancelButton = document.createElement('button');
-    cancelButton.classList.add('modal-cancel');
-    cancelButton.innerText = 'Cancel';
-
-    modal.appendChild(confirmButton);
-    modal.appendChild(cancelButton);
-
-    //focus confirmButton so that user can simply press Enter
-    confirmButton.focus();
-
-    return new Promise((resolve, reject) => {
-      cancelButton.addEventListener('click', hideModal);
-      confirmButton.addEventListener('click', () => {
-        dialogPromiseReject = null;  //var given null value. Resets.
-        hideModal();
-        resolve();
-      });
-
-      // This can be used to reject from other functions, such as the close button
-      dialogPromiseReject = reject;
-    });
   }
 
   document.querySelector('#show-modal').addEventListener('click', () => {
     showModal('Modal Title', 'This is the modal content' );
-  });
-
-  document.querySelector('#show-dialog').addEventListener('click', () => {
-    showDialog('Confirm Action', 'Are you sure this is a good idea?').then(function() {
-      alert('Confirmed');
-    }, () => {
-      alert('Not confirmed');
-    });
   });
 
   //arrow function – Esc to close modal
@@ -198,8 +185,7 @@ var pokemonRepository = (function () {
   });
 
 
-
-})();   // -------------- End of modal IIFE  --------------------
+  // -------------- End of modal   --------------------
 
   // Return statement of pokemonRepository IIFE
   return {
