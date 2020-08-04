@@ -34,7 +34,7 @@ var pokemonRepository = (function () {
     banner.classList.add('hideDataLoading');
   }
 
-  //fecth primary pokemmon data (name, character url)
+  //fetch primary pokemmon data (name, character url)
   function loadList() {
     showLoadingMessage(banner);
     return fetch(apiUrl).then(function (response) {
@@ -182,19 +182,22 @@ var pokemonRepository = (function () {
     });
   });
 
-  window.addEventListener('keydown', (e) => {   //arrow function – Esc to close modal
+  //arrow function – Esc to close modal
+  window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
       hideModal();
     }
   });
 
+  // Click outside modal on modal overlay will close modal
   modalContainer.addEventListener('click', (e) => {
-    // Click only outside modal on modal overlay will close modal
     var target = e.target;
     if (target === modalContainer) {
       hideModal();
     }
   });
+
+
 
 })();   // -------------- End of modal IIFE  --------------------
 
@@ -206,9 +209,10 @@ var pokemonRepository = (function () {
     loadList: loadList,
     loadDetails: loadDetails
   };
-})();     // ----------------- END OF IIFE -----------------
+})();   // ----------------- END OF pokemonRepositoryIIFE -----------------
 
 // ------------- Functions external to IIFE -----------------------
+
 pokemonRepository.loadList().then(function() {            // this calls the data from API and then calls getAll
   // Now the data is loaded!
   pokemonRepository.getAll().forEach(function(pokemon){   //  getAll returns Pokemon, followed by forEach loop, add to pokemonList array
