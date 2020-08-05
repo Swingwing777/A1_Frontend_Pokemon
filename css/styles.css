@@ -281,6 +281,10 @@ ul {
   margin-top: 0px;
 }
 
+#show-modal {
+  visibility: hidden;
+}
+
 /* --------------- media queries required ---------------- */
 
 @media all and (min-width: 500px) and (max-width: 800px) {

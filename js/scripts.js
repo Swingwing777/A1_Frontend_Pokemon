@@ -165,9 +165,9 @@ var pokemonRepository = (function () {
     modalContainer.classList.remove('is-visible');
   }
 
-  document.querySelector('#show-modal').addEventListener('click', () => {
+/* document.querySelector('#show-modal').addEventListener('click', () => {
     showModal('Modal Title', 'This is the modal content' );
-  });
+  });  */
 
   //arrow function – Esc to close modal
   window.addEventListener('keydown', (e) => {
