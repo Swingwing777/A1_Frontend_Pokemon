@@ -76,17 +76,51 @@ var pokemonRepository = (function () {
     });
   }
 
-  // to show additional Pokemon details on click
+  /* 
+  function typeLoop(pokemon) {
+    var pokemonTypes = pokemon.types;
+    for (var i = 0; i < pokemonTypes.length; i++) {
+      console.log(pokemonTypes[i].type.name);
+      return (pokemonTypes[i].type.name);
+    };
+  }
+
+  function abilityLoop(pokemon) {
+    var pokemonAbilities = pokemon.abilities;
+    for (var i = 0; i < pokemonAbilities.length; i++) {
+      console.log(pokemonAbilities[i].ability.name);
+      return (pokemonAbilities[i].ability.name);
+    };
+  } */
+
+  function typeLoop(pokemon) {
+    var pokemonTypes = pokemon.types;
+    pokemonTypes.forEach(function(trait) {
+      console.log(trait.type.name);
+      return (trait.type.name);
+    });
+  }
+
+  function abilityLoop(pokemon) {
+    var pokemonAbilities = pokemon.abilities;
+    pokemonAbilities.forEach(function(trait) {
+      console.log(trait.ability.name);
+      return (trait.ability.name);
+    });
+  }
+
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
+      var pokemonAbilities = pokemon.abilities;
       showModal(
         pokemon.imageUrl,
         'Character: " ' + pokemon.name + ' "',
-        'Primary Type: ' + pokemon.types[0].type.name,
-        'Primary Ability: ' + pokemon.abilities[0].ability.name,
+        'Type(s): ' + (typeLoop(pokemon)),
+        'Ability or Abilities: ' + (abilityLoop(pokemon)),
         'Height: ' + pokemon.height + ' metres',
         'Healthpoints: ' + pokemon.healthPoint
       )
+      console.log(pokemon);
     });
   }
 
