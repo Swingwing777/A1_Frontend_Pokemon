@@ -103,7 +103,7 @@ ul {
   /* this displays the message on top */
   z-index: 1000;
   position: fixed;
-  top: 50%;
+  top: 30%;
   left: 50%;
   margin-top: -20px;
   margin-left: -4.5em;
@@ -118,7 +118,7 @@ ul {
   border-width: 1px;
   border-color: black;
   border-radius: 5px;
-  background: #ebc634;
+  background: #805e00;
   color: white;
   box-shadow:
     2px 3px 3px #fff inset,
@@ -130,7 +130,7 @@ ul {
   height: auto;
   z-index: 1000;
   position: fixed;
-  top: 50%;
+  top: 30%;
   left: 50%;
   margin-top: -20px;
   margin-left: -4.5em;
@@ -145,9 +145,9 @@ ul {
   border-width: 1px;
   border-color: black;
   border-radius: 5px;
-  background: #ebc634;
+  background: #805e00;
   color: white;
-  transition: filter 3s ease;
+  transition: filter 1s ease;
   box-shadow:
     2px 3px 3px #fff inset,
     3px 3px 5px #000;
