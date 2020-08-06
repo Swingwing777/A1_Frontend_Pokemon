@@ -76,7 +76,7 @@ var pokemonRepository = (function () {
     });
   }
 
-  /* 
+  /*
   function typeLoop(pokemon) {
     var pokemonTypes = pokemon.types;
     for (var i = 0; i < pokemonTypes.length; i++) {
@@ -115,7 +115,11 @@ var pokemonRepository = (function () {
       showModal(
         pokemon.imageUrl,
         'Character: " ' + pokemon.name + ' "',
+
+        // Fallback: replace | 'Primary Type: ' + pokemon.types[0].type.name,
         'Type(s): ' + (typeLoop(pokemon)),
+
+        // Fallback: replace | 'Primary Ability: ' + pokemon.abilities[0].ability.name,
         'Ability or Abilities: ' + (abilityLoop(pokemon)),
         'Height: ' + pokemon.height + ' metres',
         'Healthpoints: ' + pokemon.healthPoint
