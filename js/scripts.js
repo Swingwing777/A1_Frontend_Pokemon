@@ -94,24 +94,30 @@ var pokemonRepository = (function () {
   } */
 
   function typeLoop(pokemon) {
-    var pokemonTypes = pokemon.types;
-    pokemonTypes.forEach(function(trait) {
-      console.log(trait.type.name);
-      return (trait.type.name);
-    });
-  }
+  var pokemonTypes = pokemon.types;
+  var result = '';                              // declare result variable as empty string
+  pokemonTypes.forEach(function(trait) {
+    console.log(trait.type.name);
+    result += trait.type.name + ', ';           // += addition assignment operator
+  });
+  return result;
+}
+
 
   function abilityLoop(pokemon) {
     var pokemonAbilities = pokemon.abilities;
+    var result = '';                               // declare result variable as empty string
     pokemonAbilities.forEach(function(trait) {
       console.log(trait.ability.name);
-      return (trait.ability.name);
+      result += trait.ability.name + ', ';         // += addition assignment operator
     });
+    return result;
   }
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
       var pokemonAbilities = pokemon.abilities;
+      //console.log(typeLoop(pokemon));
       showModal(
         pokemon.imageUrl,
         'Character: " ' + pokemon.name + ' "',
