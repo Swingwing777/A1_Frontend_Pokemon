@@ -224,6 +224,7 @@ var pokemonRepository = (function () {
   modalContainer.addEventListener('click', (e) => {
     var target = e.target;
     if (target === modalContainer) {
+      // alert('Cancelled');
       hideModal();
     }
   });
